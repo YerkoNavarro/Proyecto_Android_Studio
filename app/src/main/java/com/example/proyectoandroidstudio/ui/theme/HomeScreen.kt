@@ -29,7 +29,7 @@ fun HomeScreen() {
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
-                .padding(16.dp),
+                .padding(120.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ){
             Text(text = "Bienvenido")
@@ -37,6 +37,8 @@ fun HomeScreen() {
                 Text("Presioname")
             }
         }
+
+        /* ajustar a medida del titulo */
         Image(
 
             painter = painterResource(id = R.drawable.logo),

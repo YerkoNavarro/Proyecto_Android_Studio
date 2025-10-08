@@ -11,6 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import com.example.proyectoandroidstudio.ui.theme.HomeScreen
 import com.example.proyectoandroidstudio.ui.theme.ProyectoAndroidStudioTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,30 +22,18 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            ProyectoAndroidStudioTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            Myapp()
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun Myapp(){
+    val navController = rememberNavController()
+    NavHost(navController= navController, startDestination = "home"){
+        composable("home"){HomeScreen(navController)}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ProyectoAndroidStudioTheme {
-        Greeting("Android")
     }
 }
+
+

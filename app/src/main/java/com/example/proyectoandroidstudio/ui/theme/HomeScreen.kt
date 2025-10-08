@@ -14,14 +14,15 @@ import com.example.proyectoandroidstudio.R
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
 
     Scaffold (
         topBar = {
-            TopAppBar(title = {Text(text = "Mi App Kotlin")})
+            TopAppBar(title = {Text(text = "pasteleria mil sabores")})
         }
 
     ){innerPadding ->
@@ -29,36 +30,35 @@ fun HomeScreen() {
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
-                .padding(120.dp),
+                .padding(50.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ){
+
+            /* ajustar a medida del titulo */
+            Image(
+
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "Logo App",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp),
+                contentScale = ContentScale.Fit
+
+            )
+            Spacer(modifier = Modifier.height(90.dp))
             Text(text = "Bienvenido")
             Button(onClick = {/*accion futura*/}) {
-                Text("Presioname")
+                Text("Ingresar")
             }
         }
 
-        /* ajustar a medida del titulo */
-        Image(
 
-            painter = painterResource(id = R.drawable.logo),
-            contentDescription = "Logo App",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(150.dp),
-            contentScale = ContentScale.Fit
 
-        )
+
 
 
     }
 
-}
-
-@Preview(showBackground = true)
-@Composable
-fun HomeScreenPreview(){
-    HomeScreen()
 }
 
 

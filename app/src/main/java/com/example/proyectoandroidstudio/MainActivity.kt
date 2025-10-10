@@ -7,13 +7,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.example.proyectoandroidstudio.ui.theme.ProyectoAndroidStudioTheme
+import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.proyectoandroidstudio.ui.theme.HomeScreen
-import com.example.proyectoandroidstudio.ui.theme.ProyectoAndroidStudioTheme
 import com.example.proyectoandroidstudio.ui.theme.RegistroScreen
 
 class MainActivity : ComponentActivity() {
@@ -30,17 +30,22 @@ class MainActivity : ComponentActivity() {
 fun MyApp() {
     val navController = rememberNavController()
     
-    NavHost(
-        navController = navController,
-        startDestination = "home"
-    ) {
-        composable("home") { 
-            HomeScreen(navController = navController) 
-        }
-        composable("registro") { 
-            RegistroScreen(navController = navController) 
+    ProyectoAndroidStudioTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background //usa el color de theme.kt
+        ) {
+            NavHost(
+                navController = navController,
+                startDestination = "home"
+            ) {
+                composable("home") {
+                    HomeScreen(navController = navController)
+                }
+                composable("registro") {
+                    RegistroScreen(navController = navController)
+                }
+            }
         }
     }
 }
-
-

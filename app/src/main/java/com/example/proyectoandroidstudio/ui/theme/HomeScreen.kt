@@ -86,6 +86,8 @@ fun HomeScreen(navController: NavController) {
                 ) {
                     Text("Iniciar sesión")
                 }
+                Spacer(Modifier.height(12.dp))
+                Text("¿No tienes cuenta?")
                 Button(
                     onClick = { navController.navigate("registro") },
                     modifier = Modifier.fillMaxWidth()

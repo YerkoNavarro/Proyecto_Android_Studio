@@ -33,7 +33,7 @@ fun RegistroScreen(navController: NavController) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Pastelería Mil Sabores") }
+                title = { Text("Registro") }
             )
         }
     ) { innerPadding ->

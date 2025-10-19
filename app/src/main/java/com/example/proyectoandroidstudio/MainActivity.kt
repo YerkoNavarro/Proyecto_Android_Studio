@@ -14,6 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.proyectoandroidstudio.ui.theme.HomeScreen
+import com.example.proyectoandroidstudio.ui.theme.Login
 import com.example.proyectoandroidstudio.ui.theme.RegistroScreen
 
 class MainActivity : ComponentActivity() {
@@ -37,13 +38,16 @@ fun MyApp() {
         ) {
             NavHost(
                 navController = navController,
-                startDestination = "home"
+                startDestination = "login"
             ) {
-                composable("home") {
-                    HomeScreen(navController = navController)
+                composable("login") {
+                    Login(navController = navController)
                 }
                 composable("registro") {
                     RegistroScreen(navController = navController)
+                }
+                composable("menu") {
+                    HomeScreen(navController = navController)
                 }
             }
         }

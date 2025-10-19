@@ -23,7 +23,7 @@ import com.example.proyectoandroidstudio.data.loginUser
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController: NavController) {
+fun Login(navController: NavController) {
     var user by remember{ mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var error by remember { mutableStateOf("") }
@@ -98,5 +98,7 @@ fun HomeScreen(navController: NavController) {
         }
     }
 }
+
+
 
 

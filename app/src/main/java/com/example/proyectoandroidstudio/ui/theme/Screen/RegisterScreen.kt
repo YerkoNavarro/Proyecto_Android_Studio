@@ -74,7 +74,7 @@ fun RegistroScreen(navController: NavController) {
                         error = ""
                         navController.popBackStack() // vuelve al login
                     } else {
-                        error = "Datos inválidos o usuario ya registrado"
+                        error = "Error en el registro. Asegúrate de que:"+ "\n- El correo tenga formato válido (ej: usuario@dominio.com)"+ "\n- La contraseña tenga al menos 4 caracteres"+ "\n- La contraseña contenga al menos un carácter especial: !@#$%&*"
                     }
                 },
                 modifier = Modifier.fillMaxWidth()

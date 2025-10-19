@@ -8,8 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.proyectoandroidstudio.ui.screen.home.HomeScreen
-import com.example.proyectoandroidstudio.ui.theme.Screen.LoginScreen
+import com.example.proyectoandroidstudio.ui.theme.HomeScreen
 import com.example.proyectoandroidstudio.ui.theme.Screen.RegistroScreen
 
 class MainActivity : ComponentActivity() {
@@ -28,13 +27,13 @@ fun MyApp() {
     
     NavHost(
         navController = navController,
-        startDestination = "inicio_sesion"
+        startDestination = "home"
     ) {
-        composable("inicio_sesion") {
-            LoginScreen(navController = navController)
+        composable("home") { 
+            HomeScreen(navController = navController) 
         }
-        composable("registro") { 
-            RegistroScreen(navController = navController) 
+        composable("registro") {
+            RegistroScreen(navController = navController)
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.proyectoandroidstudio.ui.theme
+package com.example.proyectoandroidstudio.ui.theme.Screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import com.example.proyectoandroidstudio.data.registerUser
 
@@ -64,7 +65,7 @@ fun RegistroScreen(navController: NavController) {
                 visualTransformation = PasswordVisualTransformation()
             )
             if (error.isNotBlank()) {
-                Text(text = error, color = androidx.compose.ui.graphics.Color.Red)
+                Text(text = error, color = Color.Red)
             }
             Button(
                 onClick = {

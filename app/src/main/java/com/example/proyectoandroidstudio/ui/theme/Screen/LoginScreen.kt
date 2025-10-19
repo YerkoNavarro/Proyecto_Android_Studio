@@ -1,4 +1,4 @@
-package com.example.proyectoandroidstudio.ui.theme
+package com.example.proyectoandroidstudio.ui.theme.Screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -19,11 +19,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import com.example.proyectoandroidstudio.data.loginUser
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController: NavController) {
+fun LoginScreen(navController: NavController) {
     var user by remember{ mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var error by remember { mutableStateOf("") }
@@ -66,7 +67,7 @@ fun HomeScreen(navController: NavController) {
                 modifier = Modifier.fillMaxWidth()
             )
             if (error.isNotBlank()) {
-                Text(text = error, color = androidx.compose.ui.graphics.Color.Red)
+                Text(text = error, color = Color.Red)
             }
             Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp),

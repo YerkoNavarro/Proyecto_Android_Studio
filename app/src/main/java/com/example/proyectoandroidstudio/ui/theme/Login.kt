@@ -18,8 +18,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import com.example.proyectoandroidstudio.data.loginUser
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.proyectoandroidstudio.DAO.dbUserActual
+
+import com.example.proyectoandroidstudio.viewModel.PerfilViewModel
+import com.example.proyectoandroidstudio.viewModel.UserViewModel
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -27,6 +33,11 @@ fun Login(navController: NavController) {
     var user by remember{ mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var error by remember { mutableStateOf("") }
+
+    val viewModel: UserViewModel = viewModel()
+    val viewModel2: PerfilViewModel = viewModel()
+    val coroutineScope = rememberCoroutineScope()
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -74,13 +85,24 @@ fun Login(navController: NavController) {
             ) {
                 Button(
                     onClick = {
-                        val success = loginUser(user, password)
-                        if (success) {
-                            error = ""
-                            navController.navigate("menu")
-                        } else {
-                            error = "Usuario o contraseña incorrectos"
+                        coroutineScope.launch {
+                            val success = viewModel.dbloginUser(user, password)
+                            if (success) {
+                                error = ""
+                                try {
+                                    viewModel2.deleteAllActualUsers()
+
+                                }catch (e: Exception){
+                                    println("error al borrar en db")
+                                }
+
+                                viewModel2.insertActualUser(dbUserActual(0,user))
+                                navController.navigate("menu")
+                            } else {
+                                error = "Usuario o contraseña incorrectos"
+                            }
                         }
+
                     },
                     modifier = Modifier.fillMaxWidth()
                 ) {

@@ -10,6 +10,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -24,9 +28,95 @@ import com.example.proyectoandroidstudio.model.Producto
 import com.example.proyectoandroidstudio.viewModel.ProductoViewModel
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.text.style.TextAlign
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+
+
+
+
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarDefaults
+import androidx.compose.material3.NavigationBarItem
+
+import androidx.compose.runtime.getValue
+
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+
+
+@Composable
+fun NavigationBarExample(modifier: Modifier = Modifier) {
+    val navController = rememberNavController()
+    val startDestination = Destination.MENU
+    var selectedDestination by rememberSaveable { mutableIntStateOf(startDestination.ordinal) }
+
+    Scaffold(
+        modifier = modifier,
+        bottomBar = {
+            NavigationBar(windowInsets = NavigationBarDefaults.windowInsets) {
+                Destination.entries.forEachIndexed { index, destination ->
+                    NavigationBarItem(
+                        selected = selectedDestination == index,
+                        onClick = {
+                            navController.navigate(route = destination.route)
+                            selectedDestination = index
+                        },
+                        icon = {
+                            Icon(
+                                destination.icon,
+                                contentDescription = destination.contentDescription
+                            )
+                        },
+                        label = { Text(destination.label) }
+                    )
+                }
+            }
+        }
+    ) { contentPadding ->
+        AppNavHost(navController, startDestination, modifier = Modifier.padding(contentPadding))
+    }
+}
+
+@Composable
+fun AppNavHost(
+    navController: NavHostController,
+    startDestination: Destination,
+    modifier: Modifier = Modifier
+) {
+    NavHost(
+        navController = navController,
+        startDestination = startDestination.route,
+        modifier = modifier
+    ) {
+        Destination.entries.forEach { destination ->
+            composable(destination.route) {
+                when (destination) {
+                    Destination.MENU -> HomeScreen(navController)
+                    Destination.CARRITO -> Carrito(navController)
+                    Destination.PERFIL -> Perfil(navController)
+                }
+            }
+        }
+    }
+}
+
+enum class Destination(
+    val route: String,
+    val label: String,
+    val icon: ImageVector,
+    val contentDescription: String
+) {
+    MENU("menu", "Productos", Icons.Default.Home, "menu"),
+    CARRITO("carrito", "Carro", Icons.Default.ShoppingCart, "carrito"),
+    PERFIL("perfil", "Perfil", Icons.Default.AccountCircle, "perfil")
+}
 
 
 @Composable
@@ -65,8 +155,8 @@ fun ProductoCard(producto: Producto) {
             Button(
                 onClick = { },
                 modifier = Modifier.fillMaxWidth()
-            ) { 
-                Text("Agregar al carrito") 
+            ) {
+                Text("Agregar al carrito")
             }
         }
     }
@@ -86,6 +176,10 @@ fun HomeScreen(navController: NavController) {
                 }
             )
         }
+        
+
+
+
     ) { innerPadding ->
 
 

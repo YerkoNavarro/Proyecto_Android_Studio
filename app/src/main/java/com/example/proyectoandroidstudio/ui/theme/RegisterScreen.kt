@@ -18,9 +18,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import kotlinx.coroutines.launch
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import com.example.proyectoandroidstudio.data.registerUser
+import androidx.lifecycle.viewmodel.compose.viewModel
+
+import com.example.proyectoandroidstudio.viewModel.UserViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -29,6 +33,9 @@ fun RegistroScreen(navController: NavController) {
     var gmail by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var error by remember { mutableStateOf("") }
+
+    val viewModel: UserViewModel = viewModel()
+    val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         topBar = {
@@ -68,12 +75,14 @@ fun RegistroScreen(navController: NavController) {
             }
             Button(
                 onClick = {
-                    val register = registerUser(name, address = "", gmail, password)
-                    if (register) {
-                        error = ""
-                        navController.popBackStack() // vuelve al login
-                    } else {
-                        error = "Error en el registro. Asegúrate de que:"+ "\n- El correo tenga formato válido (ej: usuario@dominio.com)"+ "\n- La contraseña tenga al menos 4 caracteres"+ "\n- La contraseña contenga al menos un carácter especial: !@#$%&*"
+                    coroutineScope.launch {
+                        val register = viewModel.dbregisterUser(name, address = "", gmail, password)
+                        if (register) {
+                            error = ""
+                            navController.popBackStack() // vuelve al login
+                        } else {
+                            error = "Error en el registro. Asegúrate de que:"+ "\n- El correo tenga formato válido (ej: usuario@dominio.com)"+ "\n- La contraseña tenga al menos 4 caracteres"+ "\n- La contraseña contenga al menos un carácter especial: !@#$%&*"
+                        }
                     }
                 },
                 modifier = Modifier.fillMaxWidth()

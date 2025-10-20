@@ -13,9 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.proyectoandroidstudio.ui.theme.Carrito
 import com.example.proyectoandroidstudio.ui.theme.HomeScreen
 import com.example.proyectoandroidstudio.ui.theme.Login
+import com.example.proyectoandroidstudio.ui.theme.Perfil
 import com.example.proyectoandroidstudio.ui.theme.RegistroScreen
+import com.example.proyectoandroidstudio.ui.theme.NavigationBarExample
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +50,13 @@ fun MyApp() {
                     RegistroScreen(navController = navController)
                 }
                 composable("menu") {
-                    HomeScreen(navController = navController)
+                    NavigationBarExample()
+                }
+                composable("carrito") {
+                    Carrito(navController = navController)
+                }
+                composable("perfil") {
+                    Perfil(navController = navController)
                 }
             }
         }

@@ -1,11 +1,13 @@
 package com.example.proyectoandroidstudio.data
 
+import com.example.proyectoandroidstudio.Repository.UserRepository
 import com.example.proyectoandroidstudio.model.User
 
 val Users = mutableListOf<User>()
 
 var ActualUser : User? = null
 const val specialChars = "!@#$%&*"
+
 
 fun registerUser(name: String, address: String = "", gmail: String, password: String): Boolean {
     //validaciones basicas y simples sobre el uso de ellas

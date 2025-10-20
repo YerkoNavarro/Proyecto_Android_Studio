@@ -22,7 +22,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.proyectoandroidstudio.DAO.dbUserActual
-import com.example.proyectoandroidstudio.data.loginUser
+
 import com.example.proyectoandroidstudio.viewModel.PerfilViewModel
 import com.example.proyectoandroidstudio.viewModel.UserViewModel
 import kotlinx.coroutines.launch

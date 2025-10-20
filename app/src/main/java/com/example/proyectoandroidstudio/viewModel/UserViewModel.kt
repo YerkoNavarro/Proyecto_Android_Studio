@@ -5,9 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import com.example.proyectoandroidstudio.DAO.AppDatabase
 import com.example.proyectoandroidstudio.DAO.dbUser
 import com.example.proyectoandroidstudio.Repository.UserRepository
-import com.example.proyectoandroidstudio.data.ActualUser
-import com.example.proyectoandroidstudio.data.Users
-import com.example.proyectoandroidstudio.model.User
+
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
 

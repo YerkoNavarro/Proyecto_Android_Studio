@@ -23,7 +23,7 @@ import androidx.compose.runtime.setValue
 import kotlinx.coroutines.launch
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.proyectoandroidstudio.data.registerUser
+
 import com.example.proyectoandroidstudio.viewModel.UserViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)

@@ -10,22 +10,22 @@ class ProductoViewModel{
         Producto(
             id = 1,
             nombre = "Torta de Chocolate",
-            precio = 25.0,
+            precio = 25000,
             descripcion = "Deliciosa torta de chocolate con relleno cremoso",
             imagen = R.drawable.pastel
         ),
         Producto(
             id = 2,
             nombre = "Pastel de Vainilla",
-            precio = 20.0,
+            precio = 20000,
             descripcion = "Pastel suave de vainilla con glaseado blanco",
             imagen = R.drawable.pastel_2
         ),
         Producto(
             id = 3,
-            nombre = "Cupcakes",
-            precio = 5.0,
-            descripcion = "Docena de cupcakes variados",
+            nombre = "Torta de Frutos rojos",
+            precio = 30000,
+            descripcion = "Delicioso pastel de frutos rojos con relleno de crema",
             imagen = R.drawable.pastel_3
         )
     )
